@@ -1,6 +1,6 @@
 # Lensor Map Take Home Task
 
-This is a basic web application built with React, TypeScript, Leaflet, and MUI that displays raster maps from basic XYZ tile servers. Users can pan, zoom, and switch between layers. 
+This is a basic web application built with React, TypeScript, Leaflet, and MUI that displays raster tile maps from basic XYZ tile servers. Users can pan, zoom, and switch between layers. 
 
 ## Prerequisites
 - Node.js and npm (Node Package Manager)
