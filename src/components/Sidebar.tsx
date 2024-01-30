@@ -85,6 +85,11 @@ const Sidebar: React.FC<SidebarProps> = ({
           <button
             key={layerKey}
             onClick={() => switchLayer(layerKey)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                switchLayer(layerKey);
+              }
+            }}
             className={`layer-button ${
               layerKey === selectedLayer ? "active" : ""
             }`}
