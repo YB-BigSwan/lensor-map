@@ -1,14 +1,16 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import MapView from "./views/mapView";
 import "./App.css";
-import MapComponent from "./components/MapComponent";
-import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
+    // I just set up routing here in case I want to expand this a bit later to put as a project on my portfolio
     <>
-      <div className="application-container">
-        <Sidebar />
-        <MapComponent />
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MapView />} />
+        </Routes>
+      </Router>
     </>
   );
 }

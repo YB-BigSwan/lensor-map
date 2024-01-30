@@ -1,26 +1,34 @@
-import { useEffect, useRef, useState } from "react";
-import "../styles/sidebar.css";
-import {
-  Box,
-  Button,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-} from "@mui/material";
+import { Box, Button, Drawer } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
 import { FaBars } from "react-icons/fa";
-import React from "react";
+import MapTileProvider from "../services/mapTileProvider";
+import "../styles/sidebar.css";
 
+// Sets anchor direction for MUI drawer
 type Anchor = "left";
 
-const Sidebar = () => {
+// Gets the selectedLayer from MapView and sets setSelectedLayer in MapView to pass to MapComponent
+interface SidebarProps {
+  selectedLayer: string;
+  setSelectedLayer: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({
+  selectedLayer,
+  setSelectedLayer,
+}) => {
+  // Creating a basic isOpen type state did not use isOpen because the MUI drawer component was being finicky
   const [state, setState] = useState({
     left: false,
   });
 
-  const drawerRef = useRef(null);
+  // Basic logic to switch layers
+  const switchLayer = (layerKey: string) => {
+    setSelectedLayer(layerKey);
+  };
 
+  // MUI drawer does not natively support onClickAway or onClickOutside so we have to create our own logic
+  const drawerRef = useRef(null);
   const useOnClickOutside = (
     ref: React.RefObject<HTMLElement>,
     handler: (event: MouseEvent | TouchEvent) => void
@@ -47,6 +55,7 @@ const Sidebar = () => {
     setState({ ...state, left: false });
   });
 
+  // Logic to toggle the drawer
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -57,10 +66,10 @@ const Sidebar = () => {
       ) {
         return;
       }
-
       setState({ ...state, [anchor]: open });
     };
 
+  // Basic templating for the MUI drawer list
   const list = (anchor: Anchor) => (
     <Box
       ref={drawerRef}
@@ -70,15 +79,25 @@ const Sidebar = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <h2>Lensor Map Demo</h2>
-      <List className="menu-items">
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+      <h3>Map Layers:</h3>
+      <div className="layer-switcher">
+        {Object.entries(MapTileProvider).map(([layerKey, layer]) => (
+          <button
+            key={layerKey}
+            onClick={() => switchLayer(layerKey)}
+            className={`layer-button ${
+              layerKey === selectedLayer ? "active" : ""
+            }`}
+          >
+            <img
+              src={layer.image}
+              alt={`${layerKey} Sample|`}
+              className="layer-button-image"
+            />
+            {layer.name}
+          </button>
         ))}
-      </List>
+      </div>
     </Box>
   );
 
@@ -87,7 +106,9 @@ const Sidebar = () => {
       {(["left"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)} className="menu-button">
-            <FaBars size={30} />
+            <div className="burger-contrast">
+              <FaBars size={30} className="burger" />
+            </div>
           </Button>
           <Drawer
             anchor={anchor}
