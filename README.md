@@ -22,9 +22,9 @@ npm run dev
 ```
 
 ### Design Decisions:
-Due to the nature of the project I tried to create an elegantly simple UI design. The aim was to create a responsive, accessible, and simple UI that allows the user to veiw as  much of the map as possible. 
+Due to the nature of the project I tried to create an elegantly simple UI design. The aim was to create a responsive, accessible, and simple UI that allows the user to view as  much of the map as possible. 
 
-One notable change made during development invlolved relocating the layer switching buttons. Initially they were positioned over the top of the map in the bottom-left corner (in the style of Google Maps' desktop site). However, while testing for mobile and tablet viewports I realized they took up far too much screen real-estate, so I moved them into a React MUI drawer.
+One notable change made during development involved relocating the layer switching buttons. Initially they were positioned over the top of the map in the bottom-left corner (in the style of Google Maps' desktop site). However, while testing for mobile and tablet viewports I realized they took up far too much screen real-estate, so I moved them into a React MUI drawer.
 
 ### Challenges:
 Overall this task was pretty straightforward and fun. There were two small "challenges" along the way, but they were both resolved quickly. These challenges were:
