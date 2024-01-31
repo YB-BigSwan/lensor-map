@@ -1,19 +1,19 @@
 .sidebar-container {
+  height: 50%;
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  z-index: 999;
   top: -0.5rem;
-  height: 50%;
   transition: all 0.5s;
+  z-index: 999;
 }
 
 /* burger button styles */
 
 .menu-button {
-  top: 2rem;
   height: min-content;
+  top: 2rem;
 }
 
 .burger {
@@ -23,20 +23,20 @@
 .burger-contrast {
   width: min-content;
   height: min-content;
-  padding: 0.5rem 0.5rem;
-  background-color: var(--white);
-  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 0.5rem 0.5rem;
+  background-color: var(--white);
+  border-radius: 5px;
   gap: 0.35rem;
 }
 
 /* drawer styles */
 .menu-open {
-  display: flex;
   width: 300px;
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
@@ -84,17 +84,17 @@ h3 {
 .layer-button {
   width: 14rem;
   height: min-content;
-  padding: 0.5rem 0 0.5rem 0.5rem;
-  border: none;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  border: none;
+  border-radius: 9px;
   box-shadow: 0 2px 4px var(--shadow);
   background-color: var(--grey);
-  border-radius: 9px;
   font-size: 1rem;
-  font-weight: 100;
+  font-weight: 300;
 }
 
 .layer-button:hover {
