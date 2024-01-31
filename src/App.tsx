@@ -6,7 +6,7 @@ function App() {
   return (
     // I just set up routing here in case I want to expand this a bit later to put as a project on my portfolio
     <>
-      <Router>
+      <Router basename="/lensor-map">
         <Routes>
           <Route path="/" element={<MapView />} />
         </Routes>
