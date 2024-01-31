@@ -18,8 +18,10 @@ const MapComponent: React.FC<MapComponentProps> = ({ selectedLayer }) => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const { latitude, longitude } = position.coords;
-        setCenter({ lat: latitude, lng: longitude });
+        setCenter({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
       },
       (error) => {
         console.error("Error getting user location:", error);
@@ -30,7 +32,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ selectedLayer }) => {
   return (
     <>
       <div className="map-container">
-        <MapContainer center={center} zoom={defaultZoom}>
+        <MapContainer
+          key={`${center.lat}-${center.lng}`}
+          center={center}
+          zoom={defaultZoom}
+        >
           <TileLayer
             key={selectedLayer}
             url={
